@@ -3,14 +3,14 @@
     <!-- header -->
     <header class="flex items-center justify-between py-2 border-b">
         <a href="#" class="px-2 lg:px-0 uppercase font-bold text-purple-800">
-            LOGO
+            WIKI
         </a>
         <ul class="inline-flex items-center">
             <li class="px-2 md:px-4">
                 <a href="#" class="text-purple-600 font-semibold hover:text-purple-500"> Home </a>
             </li>
             <li class="px-2 md:px-4">
-                <a href="#" class="text-gray-500 font-semibold hover:text-purple-500"> About </a>
+                <a href="index.php?page=about" class="text-gray-500 font-semibold hover:text-purple-500"> About </a>
             </li>
             <li class="px-2 md:px-4">
                 <a href="#" class="text-gray-500 font-semibold hover:text-purple-500"> Contact </a>
