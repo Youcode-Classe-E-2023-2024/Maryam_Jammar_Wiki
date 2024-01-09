@@ -10,6 +10,10 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <!--    <h1>--><?php //= ucfirst($page) ?><!-- View</h1>-->
