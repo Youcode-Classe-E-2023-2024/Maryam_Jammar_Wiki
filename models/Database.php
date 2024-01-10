@@ -90,6 +90,23 @@ class Database
     public function rowCount() {
         return $this->stmt->rowCount();
     }
+
+    // Public method to get the database connection
+    public function getConnection()
+    {
+        return $this->dbh;
+    }
+
+
 }
 
 $db = new Database();
+
+//Check if the database connection was successful
+if ($db->getConnection()) {
+    echo "Connected to the database successfully!";
+    //Additional code or actions after successful database connection
+} else {
+    echo "Failed to connect to the database.";
+    // Additional code or actions if the connection fails
+}
