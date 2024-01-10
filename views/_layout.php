@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <!--    <h1>--><?php //= ucfirst($page) ?><!-- View</h1>-->
@@ -24,5 +26,6 @@
 
     <footer></footer>
     <script src="<?= PATH ?>assets/js/main.js"></script>
+
 </body>
 </html>
