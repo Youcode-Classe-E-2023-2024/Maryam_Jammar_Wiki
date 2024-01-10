@@ -130,136 +130,178 @@
         <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
         <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
             <main>
-                <!-- category form -->
-                <div class="p-10 flex items-center justify-center">
-                    <div class="bg-white p-4 rounded-2xl shadow-lg max-w-md w-96">
-                        <h1 class="text-xl font-semibold mb-4">Add a Category</h1>
-                        <div class="mb-4 flex justify-between">
-                            <form action="index.php?page=catag" method="post"></form>
-                            <input type="text" name="categorie" placeholder="Ajouter une catégorie" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" />
-                            <button name="ctg-submit" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">
-                                <i class="fas fa-plus"></i>
-                            </button>
+
+                <div class="flex justify-around">
+                    <div>
+                        <!-- category form -->
+                        <div class="p-10 flex items-center justify-center ">
+                            <div class="bg-white p-4 rounded-2xl shadow-lg max-w-md w-96">
+                                <h1 class="text-xl font-semibold mb-4">Add a Category</h1>
+                                <div class="mb-4 flex justify-between">
+                                    <form action="index.php?page=catag" method="post">
+                                        <input type="text" name="categorie" placeholder="Ajouter une catégorie" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" required/>
+                                        <button name="ctg-submit" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+
+<!--                                <div class="bg-white p-4 rounded-2xl shadow-lg max-w-md w-96" id="editForm">-->
+<!--                                    <h1 class="text-xl font-semibold mb-4">Update your Category</h1>-->
+<!--                                    <div class="mb-4 flex justify-between">-->
+<!--                                        <form action="index.php?page=catag" method="post">-->
+<!--                                            <input type="text" name="categorie" value="--><?php //= $categorie['categorie'] ?><!--" placeholder="Update your category" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" />-->
+<!--                                            <button name="ctg-submit" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">-->
+<!--                                                <i class="fas fa-plus"></i>-->
+<!--                                            </button>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <!-- category list -->
+                        <div class="overflow-hidden max-w-sm mx-auto rounded-lg border border-gray-200 shadow-md m-5">
+                            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                                <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                                <?php
+                                foreach ($categories as $categorie){
+                                    ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4"> <?= $categorie['categorie']?> </td>
+
+                                        <td class="px-6 py-4">
+                                            <div class="flex justify-end gap-4">
+                                                <input type="hidden" name="categorie_id" value="<?= $categorie['categorie_id'] ?>">
+
+                                                <a x-data="{ tooltip: 'Delete' }" id="delete-btn" href="index.php?page=catag&id=<? $categorie['categorie_id'] ?>">
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke-width="1.5"
+                                                            stroke="currentColor"
+                                                            class="h-6 w-6"
+                                                            x-tooltip="tooltip"
+                                                    >
+                                                        <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                                        />
+                                                    </svg>
+                                                </a>
+                                                <a x-data="{ tooltip: 'Edite' }"  href="index.php?page=catag">
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke-width="1.5"
+                                                            stroke="currentColor"
+                                                            class="h-6 w-6 "
+                                                            x-tooltip="tooltip"
+                                                    >
+                                                        <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                                                        />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                    <div class="vertical-line"></div>
+                    <style>
+                        .vertical-line {
+                            border-left: 1px solid #dbdada;
+                            height: 500px;
+                            margin-top: 96px;
+                        }
+                    </style>
+
+
+                    <!--                    <hr class="mt-12 border-t w-1/2 mx-auto" />-->
+
+                    <div>
+                        <!-- category form -->
+                        <div class="p-10 flex items-center justify-center">
+                            <div class="bg-white p-4 rounded-2xl shadow-lg max-w-md w-96">
+                                <h1 class="text-xl font-semibold mb-4">Add a Tag</h1>
+                                <div class="mb-4 flex justify-between">
+                                    <form action="index.php?page=catag" method="post">
+                                        <input type="text" name="tag" placeholder="Add tag" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" required/>
+                                        <button name="tag-submit" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tag list -->
+                        <div class="overflow-hidden max-w-sm mx-auto rounded-lg border border-gray-200 shadow-md m-5">
+                            <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
+                                <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+                                <?php
+                                foreach ($tags as $tag){
+                                    ?>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4"><?= $tag['tag'] ?></td>
+
+                                        <td class="px-6 py-4">
+                                            <div class="flex justify-end gap-4">
+                                                <a x-data="{ tooltip: 'Delete' }" href="#">
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke-width="1.5"
+                                                            stroke="currentColor"
+                                                            class="h-6 w-6"
+                                                            x-tooltip="tooltip"
+                                                    >
+                                                        <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                                        />
+                                                    </svg>
+                                                </a>
+                                                <a x-data="{ tooltip: 'Edite' }" href="#">
+                                                    <svg
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            fill="none"
+                                                            viewBox="0 0 24 24"
+                                                            stroke-width="1.5"
+                                                            stroke="currentColor"
+                                                            class="h-6 w-6"
+                                                            x-tooltip="tooltip"
+                                                    >
+                                                        <path
+                                                                stroke-linecap="round"
+                                                                stroke-linejoin="round"
+                                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
+                                                        />
+                                                    </svg>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
-                <!-- category list -->
-                <!-- component -->
-                <div class="overflow-hidden max-w-sm mx-auto rounded-lg border border-gray-200 shadow-md m-5">
-                    <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                        <tr class="hover:bg-gray-50">
 
-                            <td class="px-6 py-4">Product Designer</td>
-
-                            <td class="px-6 py-4">
-                                <div class="flex justify-end gap-4">
-                                    <a x-data="{ tooltip: 'Delete' }" href="#">
-                                        <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke-width="1.5"
-                                                stroke="currentColor"
-                                                class="h-6 w-6"
-                                                x-tooltip="tooltip"
-                                        >
-                                            <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                                            />
-                                        </svg>
-                                    </a>
-                                    <a x-data="{ tooltip: 'Edite' }" href="#">
-                                        <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke-width="1.5"
-                                                stroke="currentColor"
-                                                class="h-6 w-6"
-                                                x-tooltip="tooltip"
-                                        >
-                                            <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                                            />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                 </div>
 
-                <hr class="mt-12 border-t w-1/2 mx-auto" />
-
-                <!-- category form -->
-                <div class="p-10 flex items-center justify-center">
-                    <div class="bg-white p-4 rounded-2xl shadow-lg max-w-md w-96">
-                        <h1 class="text-xl font-semibold mb-4">Add a Tag</h1>
-                        <div class="mb-4 flex justify-between">
-                            <form action="index.php?page=catag" method="post"></form>
-                            <input type="text" name="tag" placeholder="Add tag" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" />
-                            <button name="tag-submit" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <!-- tag list -->
-                <div class="overflow-hidden max-w-sm mx-auto rounded-lg border border-gray-200 shadow-md m-5">
-                    <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-                        <tr class="hover:bg-gray-50">
-
-                            <td class="px-6 py-4">Product Designer</td>
-
-                            <td class="px-6 py-4">
-                                <div class="flex justify-end gap-4">
-                                    <a x-data="{ tooltip: 'Delete' }" href="#">
-                                        <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke-width="1.5"
-                                                stroke="currentColor"
-                                                class="h-6 w-6"
-                                                x-tooltip="tooltip"
-                                        >
-                                            <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                                            />
-                                        </svg>
-                                    </a>
-                                    <a x-data="{ tooltip: 'Edite' }" href="#">
-                                        <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke-width="1.5"
-                                                stroke="currentColor"
-                                                class="h-6 w-6"
-                                                x-tooltip="tooltip"
-                                        >
-                                            <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
-                                            />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
             </main>
             <p class="text-center text-sm text-gray-500 my-10">
                 &copy;
@@ -273,4 +315,26 @@
     </div>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+<!--    <script>-->
+<!--        function showEditModal() {-->
+<!--            document.getElementById('editForm').classList.remove('hidden');-->
+<!--        }-->
+<!---->
+<!--        function closeEditModal() {-->
+<!--            document.getElementById('editForm').classList.add('hidden');-->
+<!--        }-->
+<!---->
+<!--        // function saveCategory() {-->
+<!--        //     // Add logic to save the category-->
+<!--        //     // You can fetch data from the input field like this:-->
+<!--        //     const newCategoryName = document.querySelector('.category-input').value;-->
+<!--        //-->
+<!--        //     // You can then send the data to the server using AJAX or any other method-->
+<!--        //     // For now, let's just print it to the console-->
+<!--        //     console.log('New category name:', newCategoryName);-->
+<!--        //-->
+<!--        //     // Close the modal-->
+<!--        //     closeEditModal();-->
+<!--        // }-->
+<!--    </script>-->
 </div>
