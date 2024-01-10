@@ -25,6 +25,16 @@ if (isset($_POST['edit-submit'])) {
     header("Location: index.php?page=catag");
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Vérifier si les paramètres nécessaires sont présents
+    if (isset($_POST['categoryId']) && !empty($_POST['categoryId'])) {
+        $categorie_id = $_POST['categoryId'];
+
+        // Supprimer la catégorie
+        $categorieO->delete($categorie_id);
+        exit;
+    }
+}
 
 
 
@@ -37,6 +47,16 @@ if(isset($_POST['tag-submit'])){
     $tagO->create($tag);
 
     header("Location: index.php?page=catag");
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['tagId']) && !empty($_POST['tagId'])) {
+        $tag_id = $_POST['tagId'];
+
+        $tagO->delete($tag_id);
+        exit;
+    }
 }
 
 

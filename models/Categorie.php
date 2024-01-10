@@ -41,7 +41,7 @@ class Categorie
     public function delete($categorie_id){
         global $db;
         $stmt = $db->prepare('DELETE FROM categories WHERE categorie_id = :categorie_id');
-        $stmt->bindValue(':categorie_id', categorie_id);
+        $stmt->bindValue(':categorie_id', $categorie_id);
         $stmt->execute();
     }
 

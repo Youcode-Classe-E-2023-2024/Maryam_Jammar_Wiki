@@ -38,10 +38,12 @@ class Tag
         $this->execute();
     }
 
+
     public function delete($tag_id){
-        $this->query("DELETE FROM tags WHERE tag_id = :tag_id");
-        $this->bind(':tag_id', $tag_id);
-        $this->execute();
+        global $db;
+        $stmt = $db->prepare('DELETE FROM tags WHERE tag_id = :tag_id');
+        $stmt->bindValue(':tag_id', $tag_id);
+        $stmt->execute();
     }
 
 }
