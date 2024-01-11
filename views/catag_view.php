@@ -15,17 +15,21 @@
                         <img src="https://demo.themesberg.com/windster/images/logo.svg" class="h-6 mr-2" alt="Windster Logo">
                         <span class="self-center whitespace-nowrap">WIKI</span>
                     </a>
-                    <form action="#" method="GET" class="ml-12 hidden lg:block lg:pl-32">
-                        <label for="topbar-search" class="sr-only">Search</label>
-                        <div class="mt-1 relative lg:w-64">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <input type="text" name="email" id="topbar-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full pl-10 p-2.5" placeholder="Search">
+                    <div class="flex items-center rounded-xl ml-44">
+                        <div class="flex bg-gray-100 p-3 w-72 space-x-4 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input class="bg-gray-100 outline-none" type="text" placeholder="Article name or keyword..." />
                         </div>
-                    </form>
+                        <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
+                            <span>All categorie</span>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex items-center">
                     <button id="toggleSidebarMobileSearch" type="button" class="lg:hidden text-gray-500 hover:text-gray-900 hover:bg-gray-100 p-2 rounded-lg">
@@ -245,7 +249,7 @@
                         .vertical-line {
                             border-left: 1px solid #dbdada;
                             height: 500px;
-                            margin-top: 96px;
+                            margin-top: 88px;
                         }
                     </style>
 
