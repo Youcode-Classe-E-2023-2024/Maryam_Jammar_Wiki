@@ -8,8 +8,6 @@
     <title><?= ucfirst($page) ?></title>
     <link rel="stylesheet" href="<?= PATH ?>assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-
-
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!--     Fonts and icons     -->
