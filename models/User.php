@@ -10,11 +10,12 @@ class User extends Database
 
     public function register($picture, $username, $email, $password){
         if($this->isEmailUnique($email)){
-            $this->query('INSERT INTO users(username, picture, email, password) VALUES (:username, :picture, :email, :password)');
+            $this->query('INSERT INTO users(username, picture, email, password, role) VALUES (:username, :picture, :email, :password, :role)');
             $this->bind(':username', $username);
             $this->bind(':picture', $picture);
             $this->bind(':email', $email);
             $this->bind(':password', $password);
+            $this->bind(':role', 'Auteur');
             $this->execute();
         } else {
             throw new Exception('Email already exist !');
@@ -39,15 +40,11 @@ class User extends Database
         }
     }
 
-    public function isEmailUnique($email){
-        $this->query('SELECT email FROM users WHERE email = :email');
+    function isEmailUnique($email){
+        $this->query('SELECT * FROM users WHERE email = :email');
         $this->bind(':email', $email);
         $row = $this->single();
-        if(empty($row)){
-            return true;
-        } else {
-            return false;
-        }
+        return $row;
     }
 
     public function getUsers(){
