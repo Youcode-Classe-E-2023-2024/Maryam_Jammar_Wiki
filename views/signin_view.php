@@ -12,18 +12,18 @@
             <!-- Col -->
             <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none shadow-2xl">
                 <h3 class="pt-4 text-2xl text-center">Get started today!</h3>
-                <form method="post" action="index.php?page=signin" class="px-16 pt-6 pb-8 mb-4 bg-white rounded">
+                <form class="px-16 pt-6 pb-8 mb-4 bg-white rounded">
                     <div class="mb-4 px-12">
                         <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                             Email
                         </label>
                         <input
                                 class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                id="email"
+                                id="loginEmail"
                                 type="email"
                                 placeholder="Email"
                                 name="email"
-                        />
+                        required/>
                     </div>
                     <div class="mb-4 px-12">
                         <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
@@ -31,11 +31,11 @@
                         </label>
                         <input
                                 class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                id="password"
+                                id="loginPassword"
                                 type="password"
                                 placeholder="******************"
                                 name="password"
-                        />
+                        required/>
                     </div>
 
                     <div class="mb-6 text-center">
@@ -43,6 +43,7 @@
                                 class="w-full px-4 py-2 font-bold text-white bg-black rounded-full hover:bg-black focus:outline-none focus:shadow-outline"
                                 type="submit"
                                 name="signin"
+                                id="loginBtn"
                         >
                             Login Now
                         </button>
@@ -53,7 +54,7 @@
                                 class="inline-block text-sm text-gray-500 align-baseline hover:text-gray-800"
                                 href="index.php?page=signup"
                         >
-                            Don't have ? Register!
+                            Don't have an account? Register!
                         </a>
                     </div>
                 </form>
@@ -61,3 +62,5 @@
         </div>
     </div>
 </div>
+
+<script src="assets/js/login.js"></script>

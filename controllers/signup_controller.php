@@ -2,24 +2,37 @@
 if (file_exists("models/User.php"))
     include_once "models/User.php";
 $user = new User();
-if (isset($_POST['signup'])) {
-    $picture = $_POST['picture'];
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $c_password = $_POST['c_password'];
 
-    try {
-        if ($password != $c_password) {
-            header("Location: index.php?page=signup");
-        } else {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $user->register($picture, $username, $email, $hashed_password);
-            // Redirect or do something on successful registration
-            header("Location: index.php?page=signin");
-        }
-    } catch (Exception $e) {
-        // Handle the exception (e.g., log it, redirect the user, show an error message)
-        header("Location: index.php?page=signup");
+
+global $db;
+
+if (isset($_POST["req"]) && $_POST["req"] == "signup") {
+    // Sanitize and validate input!
+    $username = $_POST["username"];
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $password = $_POST['password'];
+    $fileName = Validation::handleFileUpload();
+    // Validate user input
+    $errors = [
+        "username_err" => Validation::validateUsername($username),
+        "email_err" => Validation::validateEmail($email),
+        "password_err" => Validation::validatePassword($password),
+        "userexists_err" => Validation::userChecker($email, $db),
+        "picture_err" => Validation::pictureValidation($fileName)
+    ];
+
+
+    if (array_filter($errors)) {
+        // Handle errors
+        echo json_encode(["errors" => $errors]);
+        exit;
     }
+
+    // Hash password
+    $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+    // Register user
+    $user->register($fileName, $username, $email, $passwordHash);
+    echo json_encode(["success" => "User registered successfully"]);
+    exit;
 }

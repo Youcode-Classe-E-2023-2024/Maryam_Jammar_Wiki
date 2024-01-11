@@ -2,24 +2,29 @@
 if (file_exists("models/User.php"))
     include_once "models/User.php";
 
-$user = new User();
-global $row;
-if(isset($_POST['signin'])){
-    extract($_POST);
-    echo $email;
-    try {
-        if ($row = $user->login($email, $password)) {
-            $_SESSION["signin"] = true;
-            $_SESSION['user_id'] = $row['user_id'];
-            $_SESSION['picture'] = $row['picture'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['password'] = $row['password'];
-            header("Location: index.php?page=homepage");
+//$user = new User();
+
+
+if (isset($_POST["req"]) && $_POST["req"] == "signin") {
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $password = $_POST["password"];
+    $userObj = new User;
+    $userChecker = $userObj->isEmailUnique($email);
+
+    if (!$userChecker) {
+        echo json_encode(["error" => "User does not exist."]);
+    } elseif (!password_verify($password, $userChecker["password"])) {
+        echo json_encode(["error" => "Password is incorrect."]);
+    } else {
+        $_SESSION['login'] = true;
+        if ($userChecker["role"] == "Admin") {
+            $access = "dashboard";
+            $_SESSION['Admin'] = true;
         }
-    } catch (Exception $e) {
-        header("Location: index.php?error={$e->getMessage()}&&page=signin");
+        else
+            $access = "homepage";
+        echo json_encode(["success" => $access]);
     }
 
-
+    exit;
 }
