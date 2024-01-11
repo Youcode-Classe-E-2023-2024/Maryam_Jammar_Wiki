@@ -1,5 +1,7 @@
 <!-- component -->
 <div class="max-w-screen-xl mx-auto">
+
+
     <!-- header -->
     <header class="flex items-center justify-between py-2 border-b">
         <a href="#" class="px-2 lg:px-0 uppercase font-bold text-purple-800">
@@ -12,15 +14,37 @@
             <li class="px-2 md:px-4">
                 <a href="index.php?page=about" class="text-gray-500 font-semibold hover:text-purple-500"> About </a>
             </li>
-            <li class="px-2 md:px-4">
-                <a href="#" class="text-gray-500 font-semibold hover:text-purple-500"> Contact </a>
-            </li>
-            <li class="px-2 md:px-4 hidden md:block">
-                <a href="index.php?page=signin" class="text-gray-500 font-semibold hover:text-purple-500"> Login </a>
-            </li>
-            <li class="px-2 md:px-4 hidden md:block">
-                <a href="index.php?page=signup" class="text-gray-500 font-semibold hover:text-purple-500"> Register </a>
-            </li>
+
+            <?php if (isset($_SESSION["login"])) {
+
+                if (empty($_SESSION["admin"])) {
+                    ?>
+                    <li class="px-2 md:px-4 hidden md:block">
+                        <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
+                    </li>
+                <?php } else { ?>
+                    <li class="px-2 md:px-4 hidden md:block">
+                        <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
+                    </li>
+                    <li class="px-2 md:px-4 hidden md:block">
+                        <a href="index.php?page=dashboard" class="text-gray-500 font-semibold hover:text-green-600"> Dashboard </a>
+                    </li>
+                <?php } ?>
+                <li class="px-2 md:px-4 hidden md:block">
+                    <form action="index.php?page=logout" method="post">
+                        <button name="logout" class="text-gray-500 font-semibold hover:text-green-600"> Logout</button>
+                    </form>
+                </li>
+            <?php } else { ?>
+                <li class="px-2 md:px-4 hidden md:block">
+                    <a href="index.php?page=signin" class="text-gray-500 font-semibold hover:text-green-600"> Login </a>
+                </li>
+                <li class="px-2 md:px-4 hidden md:block">
+                    <a href="index.php?page=signup" class="text-gray-500 font-semibold hover:text-green-600">
+                        Register </a>
+                </li>
+
+            <?php } ?>
         </ul>
 
     </header>
