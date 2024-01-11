@@ -102,11 +102,11 @@ class Database
 
 $db = new Database();
 
-//Check if the database connection was successful
-if ($db->getConnection()) {
-    echo "Connected to the database successfully!";
-    //Additional code or actions after successful database connection
-} else {
-    echo "Failed to connect to the database.";
-    // Additional code or actions if the connection fails
-}
+////Check if the database connection was successful
+//if ($db->getConnection()) {
+//    echo "Connected to the database successfully!";
+//    //Additional code or actions after successful database connection
+//} else {
+//    echo "Failed to connect to the database.";
+//    // Additional code or actions if the connection fails
+//}
