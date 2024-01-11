@@ -53,6 +53,22 @@ if(isset($_POST['tag-submit'])){
     header("Location: index.php?page=catag");
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['tag_id']) && isset($_POST['tag'])) {
+        $tag_id = $_POST['tag_id'];
+        $new_tag = $_POST['tag'];
+
+        $success = $tagO->updateTag($tag_id, $new_tag);
+
+        if ($success) {
+            echo json_encode(['success' => true]);
+            exit;
+        } else {
+            echo json_encode(['error' => 'Failed to update tag']);
+            exit;
+        }
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['tagId']) && !empty($_POST['tagId'])) {
