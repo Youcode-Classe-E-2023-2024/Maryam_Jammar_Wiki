@@ -10,19 +10,12 @@ spl_autoload_register(function ($class) {
     include_once 'models/' . $class . '.php';
 });
 
-if(isset($_SESSION["signin"])) {
-    if (isset($_GET['page']) && !empty($_GET['page'])) {
-        if ($_GET['page'] == "signin" || $_GET['page'] == "signup") {
-            $page = 'homepage';
-        } else
-            $page = trim(strtolower($_GET['page']));
-    } else {
-        $page = 'home';
-    }
+if (isset($_SESSION["login"]) && isset($_GET['page']) && ($_GET['page'] == "signin" || $_GET['page'] == "signup")) {
+    $page = 'home';
+} else if (isset($_GET['page']) && !empty($_GET['page'])) {
+    $page = trim(strtolower($_GET['page']));
 } else {
-    if ($_GET['page'] == "signup") {
-        $page = trim(strtolower($_GET['page']));
-    } else $page = "signin";
+    $page = 'home';
 }
 
 
