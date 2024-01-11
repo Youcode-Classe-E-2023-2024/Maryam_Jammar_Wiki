@@ -15,7 +15,7 @@
                         <img src="https://demo.themesberg.com/windster/images/logo.svg" class="h-6 mr-2" alt="Windster Logo">
                         <span class="self-center whitespace-nowrap">WIKI</span>
                     </a>
-                    <form action="#" method="GET" class="hidden lg:block lg:pl-32">
+                    <form action="#" method="GET" class="ml-12 hidden lg:block lg:pl-32">
                         <label for="topbar-search" class="sr-only">Search</label>
                         <div class="mt-1 relative lg:w-64">
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -34,17 +34,28 @@
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    <div class="hidden lg:flex items-center">
-                        <span class="text-base font-normal text-gray-500 mr-5">Open source ❤️</span>
-                        <div class="-mb-1">
-                            <a class="github-button" href="#" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themesberg/windster-tailwind-css-dashboard on GitHub">Star</a>
-                        </div>
-                    </div>
-                    <a href="#" class="hidden sm:inline-flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-3">
-                        <svg class="svg-inline--fa fa-gem -ml-1 mr-2 h-4 w-4" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="currentColor" d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0 192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6 224H1.365L244.3 474.9z"></path>
-                        </svg>
-                        Upgrade to Pro
+
+                    <a href="#" class="hidden sm:inline-flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-3"
+                                href="#profile"
+                        >
+                            <!-- HeroIcon - User -->
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-6 h-6 shrink-0"
+                            >
+                                <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                                />
+                            </svg>
+
+                            <small class=" text-center text-xs font-medium"> Profile </small>
+
                     </a>
                 </div>
             </div>
@@ -116,7 +127,7 @@
 
                         </ul>
                         <div class="space-y-2 pt-2">
-                                <a href="#" class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                <a href="index.php?page=logout" class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                     <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
                                     </svg>
@@ -195,9 +206,9 @@
                                                 </button>
 
 
-                                                <!--                                                editCatgeory-->
+                                                <!--editCatgeory-->
                                                 <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-gray bg-transparent  " type="button">
-                                                    <a x-data="{ tooltip: 'Edite' }" href="#">
+                                                    <a x-data="{ tooltip: 'Edite' }" >
                                                         <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 fill="none"
