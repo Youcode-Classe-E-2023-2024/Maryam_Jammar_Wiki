@@ -1,36 +1,40 @@
 <?php
 
 $categories = $categorieO->getCategories();
-//$categories = $categorieO->delete($categorie);
-//$categories = $categorieO->edit();
 
 $tags = $tagO->getTags();
 
+
+//add categorie
 if (isset($_POST['ctg-submit'])) {
     $categorie = $_POST['categorie'];
-
     $categorieO->create($categorie);
 //    $categorieO->getCategories();
 
-
     header("Location: index.php?page=catag");
 }
 
-if (isset($_POST['edit-submit'])) {
-    $catg_id = $_POST['edit-categorie-id'];
-    $categorie = $_POST['edit-categorie'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['categorie_id']) && isset($_POST['categorie'])) {
+        $categorie_id = $_POST['categorie_id'];
+        $new_categorie = $_POST['categorie'];
 
-    $categorieO->edit($categorie_id, $catg_id);
+        $success = $categorieO->updateCategory($categorie_id, $new_categorie);
 
-    header("Location: index.php?page=catag");
+        if ($success) {
+            echo json_encode(['success' => true]);
+            exit;
+        } else {
+            echo json_encode(['error' => 'Failed to update category']);
+            exit;
+        }
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Vérifier si les paramètres nécessaires sont présents
     if (isset($_POST['categoryId']) && !empty($_POST['categoryId'])) {
         $categorie_id = $_POST['categoryId'];
 
-        // Supprimer la catégorie
         $categorieO->delete($categorie_id);
         exit;
     }

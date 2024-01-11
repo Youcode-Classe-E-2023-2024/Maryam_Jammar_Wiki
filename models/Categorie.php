@@ -22,21 +22,18 @@ class Categorie
         $stmt->bindValue(':categorie', $categorie, PDO::PARAM_STR);
         $stmt->execute();
     }
-    public function edit($categorie_id, $categorie){
+    function updateCategory($categorie_id, $categorie)
+    {
         global $db;
-        $stmt->getCategories();
-        foreach ($categorie as $categorie) {
-            $categorie = $categorie['categorie'];
-        }
+        $stmt = $db->prepare('UPDATE categories SET categorie = :categorie WHERE categorie_id = :categorie_id');
+        $stmt->bindParam(':categorie', $categorie, PDO::PARAM_STR);
+        $stmt->bindParam(':categorie_id', $categorie_id, PDO::PARAM_INT);
 
-        $stmt = $db->prepare('UPDATE categories 
-                            SET categorie = :categorie, 
-                            WHERE categorie_id = :categorie_id');
-        $stmt->bind(':categorie', categorie);
-        $stmt->bind(':categorie_id', categorie_id, PDO::PARAM_INT);
+        $success = $stmt->execute();
 
-        $stmt->execute();
+        return $success;
     }
+
 
     public function delete($categorie_id){
         global $db;
