@@ -86,6 +86,15 @@ class User extends Database
         $this->execute();
     }
 
+    public function getLatestUsers($limit = 5){
+        global $db;
+        $sql = 'SELECT * FROM users ORDER BY user_id DESC LIMIT :limit';
+        $users = $db->prepare($sql);
+        $users->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $users->execute(); // Exécuter la requête préparée
+        return $users->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 
 
