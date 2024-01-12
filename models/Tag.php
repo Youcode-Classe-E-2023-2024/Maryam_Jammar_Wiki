@@ -36,4 +36,31 @@ class Tag
         $stmt->execute();
     }
 
+    static function wiki_tag ($tag, $wikiId) {
+        global $db;
+        $sql = "INSERT INTO wikitag (tag_id, wiki_id) VALUES (:tag_id, :wiki_id)";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':tag_id', $tag);
+        $stmt->bindParam(':wiki_id', $wikiId);
+        $stmt->execute();
+    }
+
+    static function update_wiki_tag ($tag, $wikiId) {
+        global $db;
+        $sql = "UPDATE wiki_tag  SET tag_id = :tag_id WHERE wiki_id= :wiki_id ";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':tag_id', $tag);
+        $stmt->bindParam(':wiki_id', $wikiId);
+
+        $stmt->execute();
+    }
+
+    static function display_wiki_tag ($tag, $wikiId) {
+        global $db;
+        $sql = "SELECT * FROM wiki_tag WHERE wiki_id= :wiki_id ";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':tag_id', $tag);
+        $stmt->bindParam(':wiki_id', $wikiId);
+        $stmt->execute();
+    }
 }
