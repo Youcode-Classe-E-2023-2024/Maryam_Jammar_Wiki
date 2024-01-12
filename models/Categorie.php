@@ -42,5 +42,18 @@ class Categorie
         $stmt->execute();
     }
 
-}
+    public function getLatestCategories($limit = 5){
+        global $db;
+        $sql = 'SELECT * FROM categories ORDER BY categorie_id DESC LIMIT :limit';
+        $categories = $db->prepare($sql);
+        $categories->bindParam(':limit', $limit, PDO::PARAM_INT);
+        return $categories->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+
+}
+$categorieO = new Categorie();
+
+$categories = $categorieO->getCategories();
+
+$latestCategories = $categorieO->getLatestCategories();
