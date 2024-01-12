@@ -17,6 +17,7 @@ if (isset($_POST["req"]) && $_POST["req"] == "signin") {
         echo json_encode(["error" => "Password is incorrect."]);
     } else {
         $_SESSION['login'] = true;
+        $_SESSION['user_id'] = $userChecker["user_id"];
         if ($userChecker["role"] == "Admin") {
             $access = "dashboard";
             $_SESSION['Admin'] = true;
