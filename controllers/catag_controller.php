@@ -1,9 +1,11 @@
 <?php
+$categorieO = new Categorie();
 
 $categories = $categorieO->getCategories();
 
 $tags = $tagO->getTags();
 
+$latestCategories = $categorieO->getLatestCategories();
 
 //add categorie
 if (isset($_POST['ctg-submit'])) {
