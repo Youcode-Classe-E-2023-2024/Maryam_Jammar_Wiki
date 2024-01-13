@@ -18,6 +18,8 @@ if (isset($_POST["req"]) && $_POST["req"] == "signin") {
     } else {
         $_SESSION['login'] = true;
         $_SESSION['user_id'] = $userChecker["user_id"];
+        $_SESSION['username'] = $userChecker["username"];
+        $_SESSION['picture'] = $userChecker["picture"];
         if ($userChecker["role"] == "Admin") {
             $access = "dashboard";
             $_SESSION['Admin'] = true;
