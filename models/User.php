@@ -8,6 +8,14 @@ class User extends Database
     public $email;
     private $password;
 
+    /***
+     * @param $picture
+     * @param $username
+     * @param $email
+     * @param $password
+     * @return void
+     * @throws Exception
+     */
     public function register($picture, $username, $email, $password){
         if($this->isEmailUnique($email)){
             $this->query('INSERT INTO users(username, picture, email, password, role) VALUES (:username, :picture, :email, :password, :role)');
@@ -23,6 +31,12 @@ class User extends Database
 
     }
 
+    /***
+     * @param $email
+     * @param $password
+     * @return mixed
+     * @throws Exception
+     */
     public function login($email, $password){
         $this->query('SELECT * FROM users WHERE email = :email');
         $this->bind(':email', $email);
@@ -40,6 +54,10 @@ class User extends Database
         }
     }
 
+    /***
+     * @param $email
+     * @return mixed
+     */
     function isEmailUnique($email){
         $this->query('SELECT * FROM users WHERE email = :email');
         $this->bind(':email', $email);
@@ -47,12 +65,23 @@ class User extends Database
         return $row;
     }
 
+    /****
+     * @return mixed
+     */
     public function getUsers(){
         $this->query("SELECT * FROM users");
         $users = $this->multiple();
         return $users;
     }
 
+    /***
+     * @param $picture
+     * @param $username
+     * @param $email
+     * @param $password
+     * @param $user_id
+     * @return void
+     */
     public function edit($picture, $username, $email, $password, $user_id){
             $this->getUsers();
             foreach ($users as $user) {
@@ -79,6 +108,10 @@ class User extends Database
             $this->execute();
     }
 
+    /***
+     * @param $user_id
+     * @return void
+     */
     public function delete($user_id){
         $this->query("DELETE FROM users WHERE user_id = :user_id");
         $this->bind(':user_id', $user_id);
@@ -86,6 +119,10 @@ class User extends Database
         $this->execute();
     }
 
+    /***
+     * @param $limit
+     * @return array|false
+     */
     public function getLatestUsers($limit = 5){
         global $db;
         $sql = 'SELECT * FROM users ORDER BY user_id DESC LIMIT :limit';
@@ -95,7 +132,14 @@ class User extends Database
         return $users->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    /***
+     * @return mixed
+     */
+    public function totalUsers(){
+        $this->query("SELECT COUNT(*) as total_users FROM users");
+        $users = $this->single();
+        return $users['total_users'];
+    }
 
 
 }
