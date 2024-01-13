@@ -57,13 +57,15 @@ class Categorie
      * @param $limit
      * @return array|false
      */
-    public function getLatestCategories($limit = 5){
+    public function getLatestCategories($limit = 7){
         global $db;
         $sql = 'SELECT * FROM categories ORDER BY categorie_id DESC LIMIT :limit';
         $categories = $db->prepare($sql);
         $categories->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $categories->execute(); // N'oubliez pas d'exécuter la requête
         return $categories->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     /***
      * @return mixed
@@ -83,4 +85,3 @@ $categorieO = new Categorie();
 
 $categories = $categorieO->getCategories();
 
-$latestCategories = $categorieO->getLatestCategories();
