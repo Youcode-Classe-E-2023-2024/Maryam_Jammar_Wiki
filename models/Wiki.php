@@ -144,4 +144,14 @@ class Wiki
         return $result['total_wiki'];
     }
 
+    public function totalWikiCategory($categorie_id){
+        global $db;
+        $wiki = $db->prepare("SELECT COUNT(*) as total_wiki FROM wiki WHERE categorie_id = :categorie_id");
+        $wiki->bindParam(':categorie_id', $categorie_id, PDO::PARAM_INT);
+        $wiki->execute();
+        $result = $wiki->fetch(PDO::FETCH_ASSOC);
+        return $result['total_wiki'];
+    }
+
+
 }
