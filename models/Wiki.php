@@ -116,6 +116,10 @@ class Wiki
         return $success;
     }
 
+    /***
+     * @param $wiki_id
+     * @return mixed
+     */
     function wikiDetails($wiki_id){
         global $db;
         $wiki = $db->prepare('SELECT GROUP_CONCAT(tags.tag) AS tags, wiki.*, users.username, users.picture, users.email, categories.categorie 
@@ -128,4 +132,16 @@ class Wiki
         $wiki->execute([$wiki_id]);
         return $wiki->fetch(PDO::FETCH_ASSOC);
     }
+
+    /****
+     * @return mixed
+     */
+    public function totalWiki(){
+        global $db;
+        $wiki = $db->prepare("SELECT COUNT(*) as total_wiki FROM wiki");
+        $wiki->execute();
+        $result = $wiki->fetch(PDO::FETCH_ASSOC);
+        return $result['total_wiki'];
+    }
+
 }
