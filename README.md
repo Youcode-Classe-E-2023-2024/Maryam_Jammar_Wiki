@@ -1,5 +1,7 @@
 # Wiki™ : Explorez, Créez et Partagez des Savoirs Ensemble!
 
+![wiki](https://github.com/Youcode-Classe-E-2023-2024/Maryam_Jammar_Wiki/assets/132862036/98f3b448-7406-446e-828d-e6d86cb7c0d9)
+
 ## Présentation
 Bienvenue dans le royaume Enchanté, une oasis numérique où les maîtres, artisans et chercheurs convergent pour forger des expériences ensorcelantes. Explorez les arcanes des Coulisses Numériques et les Enchantements Frontaux, guidés par la magie des technologies et la structure dévoilée dans ce grimoire.
 
