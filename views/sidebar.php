@@ -46,6 +46,18 @@
                             <span class="bg-gray-200 text-gray-800 ml-3 text-sm font-medium inline-flex items-center justify-center px-2 rounded-full"></span>
                         </a>
                     </li>
+                    <li>
+                        <a href="index.php?page=restorewiki" class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75">
+                                <path d="M8 15l4-4 4 4"></path>
+                                <path d="M12 19V5"></path>
+                            </svg>
+
+
+                            <span class="ml-3 flex-1 whitespace-nowrap">Archived Wikis</span>
+                            <span class="bg-gray-200 text-gray-800 ml-3 text-sm font-medium inline-flex items-center justify-center px-2 rounded-full"></span>
+                        </a>
+                    </li>
 
                 </ul>
                 <div class="space-y-2 pt-2">
