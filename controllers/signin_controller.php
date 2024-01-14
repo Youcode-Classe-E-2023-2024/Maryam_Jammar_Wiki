@@ -25,7 +25,7 @@ if (isset($_POST["req"]) && $_POST["req"] == "signin") {
             $_SESSION['Admin'] = true;
         }
         else
-            $access = "homepage";
+            $access = "home";
         echo json_encode(["success" => $access]);
     }
 
