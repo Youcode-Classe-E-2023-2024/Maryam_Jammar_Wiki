@@ -4,7 +4,7 @@
     <?php include_once 'header_view.php'?>
     <!-- header ends here -->
 
-    <main class="mt-10">
+    <main class="mt-10 md:grid md:grid-cols-1 lg:p-0">
 
         <div class="mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative" style="height: 24em;">
             <div class="absolute left-0 bottom-0 w-full h-full z-10"
