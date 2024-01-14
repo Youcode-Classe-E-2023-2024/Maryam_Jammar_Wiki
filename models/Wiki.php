@@ -21,6 +21,17 @@ class Wiki
         return $wiki->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getMyWikis(){
+        global $db;
+        if (isset($_SESSION['user_id'])) {
+            $userId = $_SESSION['user_id'];
+
+            $wiki = $db->query("SELECT * FROM wiki WHERE deleted = 0 AND user_id = $userId ORDER BY wiki_id DESC");
+
+            return $wiki->fetchAll(PDO::FETCH_ASSOC);
+        }
+    }
+
     /****
      * @param $title
      * @param $content
@@ -144,6 +155,10 @@ class Wiki
         return $result['total_wiki'];
     }
 
+    /***
+     * @param $categorie_id
+     * @return mixed
+     */
     public function totalWikiCategory($categorie_id){
         global $db;
         $wiki = $db->prepare("SELECT COUNT(*) as total_wiki FROM wiki WHERE categorie_id = :categorie_id");
@@ -151,6 +166,44 @@ class Wiki
         $wiki->execute();
         $result = $wiki->fetch(PDO::FETCH_ASSOC);
         return $result['total_wiki'];
+    }
+
+    /****
+     * @param $limit
+     * @return array|false
+     */
+    public function getLatestWikis($limit = 5){
+        global $db;
+        $sql = 'SELECT w.*, c.categorie, t.tag 
+            FROM wiki w
+            JOIN categories c ON w.categorie_id = c.categorie_id
+            LEFT JOIN wikitag wt ON w.wiki_id = wt.wiki_id
+            LEFT JOIN tags t ON wt.tag_id = t.tag_id
+            WHERE deleted = 0
+            ORDER BY w.wiki_id DESC LIMIT :limit';
+        $wikis = $db->prepare($sql);
+        $wikis->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $wikis->execute();
+        return $wikis->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /***
+     * @param $limit
+     * @return array|false
+     */
+    public function get3LatestWikis($limit = 3){
+        global $db;
+        $sql = 'SELECT w.*, c.categorie, t.tag 
+            FROM wiki w
+            JOIN categories c ON w.categorie_id = c.categorie_id
+            LEFT JOIN wikitag wt ON w.wiki_id = wt.wiki_id
+            LEFT JOIN tags t ON wt.tag_id = t.tag_id
+            WHERE deleted = 0
+            ORDER BY w.wiki_id DESC LIMIT :limit';
+        $wikis = $db->prepare($sql);
+        $wikis->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $wikis->execute();
+        return $wikis->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
