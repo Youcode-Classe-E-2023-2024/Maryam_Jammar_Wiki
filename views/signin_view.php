@@ -1,5 +1,5 @@
 <!-- Container -->
-<div class="container mx-auto">
+<div class="container mx-auto bg-black p-12">
     <div class="w-full flex justify-center px-6 my-12 p-12">
         <!-- Row -->
         <div class="w-full xl:w-3/4 lg:w-11/12 flex">
@@ -7,10 +7,10 @@
             <div
 
                     class="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"
-                    style="background-image: url('assets/img/bg-2.jpg')"
+                    style="background-image: url('assets/img/wikiblack.webp')"
             ></div>
             <!-- Col -->
-            <div class="w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none shadow-2xl">
+            <div class="w-full lg:w-7/12 bg-white rounded-lg lg:rounded-l-none shadow-2xl p-3" style="opacity: 80%">
                 <h3 class="pt-4 text-2xl text-center">Get started today!</h3>
                 <form class="px-16 pt-6 pb-8 mb-4 bg-white rounded">
                     <div class="mb-4 px-12">
