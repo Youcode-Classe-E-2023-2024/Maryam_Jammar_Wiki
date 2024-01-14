@@ -4,32 +4,20 @@
         <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
             <main>
 
-                <div class="flex justify-around">
+                <div class="grid grid-col-2 mx-auto">
                     <div>
                         <!-- category form -->
-                        <div class="p-10 flex items-center justify-center ">
+                        <div class="p-10 flex items-center justify-center">
                             <div class="bg-white p-4 rounded-2xl shadow-lg max-w-md w-96">
                                 <h1 class="text-xl font-semibold mb-4">Add a Category</h1>
                                 <div class="mb-4 flex justify-between">
                                     <form action="index.php?page=catag" method="post">
-                                        <input type="text" name="categorie" placeholder="Ajouter une catégorie" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" required/>
+                                        <input type="text" name="categorie" placeholder="Ajouter une catégorie" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500 md:mb-8" required/>
                                         <button name="ctg-submit" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">
                                             <i class="fas fa-plus"></i>
                                         </button>
                                     </form>
                                 </div>
-
-<!--                                <div class="bg-white p-4 rounded-2xl shadow-lg max-w-md w-96" id="editForm">-->
-<!--                                    <h1 class="text-xl font-semibold mb-4">Update your Category</h1>-->
-<!--                                    <div class="mb-4 flex justify-between">-->
-<!--                                        <form action="index.php?page=catag" method="post">-->
-<!--                                            <input type="text" name="categorie" value="--><?php //= $categorie['categorie'] ?><!--" placeholder="Update your category" class="email-input w-72 px-4 py-2 border rounded-lg text-gray-700 focus:border-blue-500" />-->
-<!--                                            <button name="ctg-submit" type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 focus:outline-none">-->
-<!--                                                <i class="fas fa-plus"></i>-->
-<!--                                            </button>-->
-<!--                                        </form>-->
-<!--                                    </div>-->
-<!--                                </div>-->
                             </div>
                         </div>
                         <!-- category list -->
@@ -101,18 +89,18 @@
 
                     </div>
 
+<!---->
+<!--                    <div class="vertical-line"></div>-->
+<!--                    <style>-->
+<!--                        .vertical-line {-->
+<!--                            border-left: 1px solid #dbdada;-->
+<!--                            height: 500px;-->
+<!--                            margin-top: 88px;-->
+<!--                        }-->
+<!--                    </style>-->
 
-                    <div class="vertical-line"></div>
-                    <style>
-                        .vertical-line {
-                            border-left: 1px solid #dbdada;
-                            height: 500px;
-                            margin-top: 88px;
-                        }
-                    </style>
 
-
-                    <!--<hr class="mt-12 border-t w-1/2 mx-auto" />-->
+                    <hr class="mt-12 border-t w-1/2 mx-auto" />
 
                     <div>
                         <!-- category form -->
