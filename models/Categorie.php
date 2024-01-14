@@ -62,7 +62,7 @@ class Categorie
         $sql = 'SELECT * FROM categories ORDER BY categorie_id DESC LIMIT :limit';
         $categories = $db->prepare($sql);
         $categories->bindParam(':limit', $limit, PDO::PARAM_INT);
-        $categories->execute(); // N'oubliez pas d'exécuter la requête
+        $categories->execute();
         return $categories->fetchAll(PDO::FETCH_ASSOC);
     }
 
