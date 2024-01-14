@@ -173,7 +173,7 @@
                                     <tr class=" text-gray-500">
                                         <td class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4"> <?= $wiki['title'] ?> </td>
                                         <th class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left"> <?= $wiki['categorie'] ?> </th>
-                                        <th class="border-t-0 px-4  text-sm font-normal whitespace-nowrap p-4 text-left"> <?= $wiki['tag'] ?> </th>
+                                        <th class="border-t-0 px-4  text-sm font-normal whitespace-nowrap p-4 text-left"> <?= $wiki['tags'] ?> </th>
                                     </tr>
                                     <?php endforeach; ?>
                                     </tbody>

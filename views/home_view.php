@@ -86,7 +86,7 @@
                             <img src="https://randomuser.me/api/portraits/men/86.jpg"
                                  class="h-10 w-10 rounded-full mr-2 object-cover" />
                             <div>
-                                <p class="mt-3 font-semibold text-gray-700 text-sm capitalize"> eduard franz </p>
+                                <p class="mt-3 font-semibold text-gray-700 text-sm capitalize"> <?= $wiki['username'] ?> </p>
                             </div>
                         </div>
                     </div>
@@ -127,20 +127,6 @@
                 <div class="border border-dotted"></div>
 
                 <!-- subscribe -->
-                <div class="p-1 mt-4 mb-4">
-                    <h5 class="font-bold text-lg uppercase text-gray-700 mb-2"> Subscribe </h5>
-                    <p class="text-gray-600">
-                        Subscribe to our newsletter. We deliver the best health related articles to your inbox
-                    </p>
-                    <input placeholder="your email address"
-                           class="text-gray-700 bg-gray-100 rounded-t hover:outline-none p-2 w-full mt-4 border" />
-                    <button class="px-4 py-2 bg-indigo-600 text-gray-200 rounded-b w-full capitalize tracking-wide">
-                        Subscribe
-                    </button>
-                </div>
-
-                <!-- divider -->
-                <div class="border border-dotted"></div>
 
             </div>
 

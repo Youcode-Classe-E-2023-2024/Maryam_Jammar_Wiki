@@ -174,13 +174,15 @@ class Wiki
      */
     public function getLatestWikis($limit = 5){
         global $db;
-        $sql = 'SELECT w.*, c.categorie, t.tag 
+        $sql = 'SELECT GROUP_CONCAT(t.tag) AS tags, w.*, c.categorie
             FROM wiki w
             JOIN categories c ON w.categorie_id = c.categorie_id
             LEFT JOIN wikitag wt ON w.wiki_id = wt.wiki_id
             LEFT JOIN tags t ON wt.tag_id = t.tag_id
             WHERE deleted = 0
+            GROUP BY w.wiki_id
             ORDER BY w.wiki_id DESC LIMIT :limit';
+
         $wikis = $db->prepare($sql);
         $wikis->bindParam(':limit', $limit, PDO::PARAM_INT);
         $wikis->execute();
@@ -193,13 +195,16 @@ class Wiki
      */
     public function get3LatestWikis($limit = 3){
         global $db;
-        $sql = 'SELECT w.*, c.categorie, t.tag 
+        $sql = 'SELECT GROUP_CONCAT(t.tag) AS tags, w.*, u.username, c.categorie
             FROM wiki w
+            LEFT JOIN users u ON w.user_id = u.user_id
             JOIN categories c ON w.categorie_id = c.categorie_id
             LEFT JOIN wikitag wt ON w.wiki_id = wt.wiki_id
             LEFT JOIN tags t ON wt.tag_id = t.tag_id
             WHERE deleted = 0
+            GROUP BY w.wiki_id
             ORDER BY w.wiki_id DESC LIMIT :limit';
+
         $wikis = $db->prepare($sql);
         $wikis->bindParam(':limit', $limit, PDO::PARAM_INT);
         $wikis->execute();
