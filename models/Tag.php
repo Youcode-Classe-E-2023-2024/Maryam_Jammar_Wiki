@@ -55,12 +55,13 @@ class Tag
         $stmt->execute();
     }
 
-    static function display_wiki_tag ($tag, $wikiId) {
+    static function display_wiki_tag ($wiki_id) {
         global $db;
-        $sql = "SELECT * FROM wiki_tag WHERE wiki_id= :wiki_id ";
+        $sql = "SELECT tags.* FROM wiki_tag
+                JOIN tags ON wikitag.tag_id = tags.tag_id
+                WHERE wikitag.wiki_id = ?";
         $stmt = $db->prepare($sql);
-        $stmt->bindParam(':tag_id', $tag);
-        $stmt->bindParam(':wiki_id', $wikiId);
-        $stmt->execute();
+        $stmt->execute([$wiki_id]);
+        return $stmt->fetchAll();
     }
 }
