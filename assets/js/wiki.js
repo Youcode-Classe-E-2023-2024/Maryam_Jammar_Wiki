@@ -12,7 +12,6 @@ function addWiki() {
             if (data === "Wiki added successfully") {
                 alert(data);
                 window.location.href = 'index.php?page=wikis';
-                // actualiser la liste des wikis si nécessaire
             } else if (data === "Failed to add Wiki") {
                 alert(data);
             } else {
@@ -77,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    alert('Wiki updated successfully');
                     window.location.href = 'index.php?page=wikis';
                 } else {
                     console.error('Failed to update wiki:', data.error);
@@ -107,6 +107,8 @@ function deleteWiki(wiki_id) {
         "index.php?page=wikis&delete=true&id=" + wiki_id,
         (data) => {
             console.log(data);
+            alert('Wiki deleted successfully');
+            window.location.href = 'index.php?page=wikis';
         }
     )
 }
@@ -126,6 +128,30 @@ function archiveWiki(wiki_id) {
         "index.php?page=wikis&archive=true&id=" + wiki_id,
         (data) => {
             console.log(data);
+            alert('Wiki archived successfully');
+            window.location.href = 'index.php?page=wikis';
+        }
+    )
+}
+
+const restoreBtn = document.querySelectorAll(".restore-btns");
+
+restoreBtn.forEach((btn) => {
+    btn.addEventListener("click", function() {
+        console.log('zzzz')
+
+        let wiki_id = this.getAttribute("data-wiki-id");
+        restoreWiki(wiki_id);
+    })
+})
+
+function restoreWiki(wiki_id) {
+    $.get(
+        "index.php?page=restorewiki&restore=true&id=" + wiki_id,
+        (data) => {
+            console.log(data);
+            alert('Wiki restored successfully');
+            window.location.href = 'index.php?page=restorewiki';
         }
     )
 }
