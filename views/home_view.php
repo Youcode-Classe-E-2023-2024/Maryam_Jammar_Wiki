@@ -5,8 +5,7 @@
     <!-- header -->
     <?php include_once 'header_view.php'?>
     <!-- header ends here -->
-
-    <main class="mt-10">
+    <main  id="home-main" class="mt-10">
         <div class="block md:flex md:space-x-2 px-2 lg:p-0">
             <a
                     class="mb-4 md:mb-0 w-full md:w-2/3 relative rounded inline-block"
@@ -78,7 +77,7 @@
                             <div class="mt-3 md:mt-0 text-gray-700 font-bold text-2xl mb-2">
                                 <?= $wiki['title'] ?>
                             </div>
-                            <p class="text-gray-700 text-base">
+                            <p class="text-gray-700 text-base text-justify">
                                 <?=  substr($wiki['content'], 0, 300) ?>
                             </p>
                         </div>
@@ -144,3 +143,5 @@
         All rights reserved.
     </p>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="assets/js/searchbar.js"></script>
