@@ -21,6 +21,9 @@ class Wiki
         return $wiki->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /***
+     * @return array|false|void
+     */
     public function getMyWikis(){
         global $db;
         if (isset($_SESSION['user_id'])) {
@@ -32,6 +35,29 @@ class Wiki
         }
     }
 
+    /***
+     * @return array|false
+     */
+    public function getArchivedWikis(){
+        global $db;
+        $wiki = $db->query('SELECT * FROM wiki WHERE deleted = 1 ORDER BY wiki_id DESC');
+        return $wiki->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /***
+     * @param $wikiId
+     * @return bool
+     */
+    public function restoreWiki($wikiId) {
+        global $db;
+
+        $sql = "UPDATE wiki SET deleted = 0 WHERE wiki_id = ?";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(1, $wikiId, PDO::PARAM_INT);
+        $success = $stmt->execute();
+
+        return $success;
+    }
     /****
      * @param $title
      * @param $content
