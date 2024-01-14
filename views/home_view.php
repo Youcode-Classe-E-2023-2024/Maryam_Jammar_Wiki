@@ -3,51 +3,7 @@
 
 
     <!-- header -->
-    <header class="flex items-center justify-between py-2 border-b">
-        <a href="#" class="px-2 lg:px-0 uppercase font-bold text-purple-800">
-            WIKI
-        </a>
-        <ul class="inline-flex items-center">
-            <li class="px-2 md:px-4">
-                <a href="#" class="text-purple-600 font-semibold hover:text-purple-500"> Home </a>
-            </li>
-            <li class="px-2 md:px-4">
-                <a href="index.php?page=about" class="text-gray-500 font-semibold hover:text-purple-500"> About </a>
-            </li>
-
-            <?php if (isset($_SESSION["login"])) {
-
-                if (empty($_SESSION["admin"])) {
-                    ?>
-                    <li class="px-2 md:px-4 hidden md:block">
-                        <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage My Wikis </a>
-                    </li>
-                <?php } else { ?>
-                    <li class="px-2 md:px-4 hidden md:block">
-                        <a id="manage-wikis-btn" class="cursor-pointer text-gray-500 font-semibold hover:text-green-600"> Manage Wikis </a>
-                    </li>
-                    <li class="px-2 md:px-4 hidden md:block">
-                        <a href="index.php?page=dashboard" class="text-gray-500 font-semibold hover:text-green-600"> Dashboard </a>
-                    </li>
-                <?php } ?>
-                <li class="px-2 md:px-4 hidden md:block">
-                    <form action="index.php?page=logout" method="post">
-                        <button name="logout" class="text-gray-500 font-semibold hover:text-green-600"> Logout</button>
-                    </form>
-                </li>
-            <?php } else { ?>
-                <li class="px-2 md:px-4 hidden md:block">
-                    <a href="index.php?page=signin" class="text-gray-500 font-semibold hover:text-green-600"> Login </a>
-                </li>
-                <li class="px-2 md:px-4 hidden md:block">
-                    <a href="index.php?page=signup" class="text-gray-500 font-semibold hover:text-green-600">
-                        Register </a>
-                </li>
-
-            <?php } ?>
-        </ul>
-
-    </header>
+    <?php include_once 'header_view.php'?>
     <!-- header ends here -->
 
     <main class="mt-10">
@@ -104,87 +60,38 @@
             <!-- post cards -->
             <div class="w-full lg:w-2/3">
 
+                <?php
+                $wiki = new Wiki();
+                $latestWikis = $wiki->get3LatestWikis();
+                foreach ($latestWikis as $wiki) : ?>
                 <a class="block rounded w-full lg:flex mb-10"
-                   href="#"
+                   href="index.php?page=wikidetails&id=<?= $wiki['wiki_id'] ?>"
                 >
                     <div
                             class="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75"
-                            style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80')"
+                            style="background-image: url('assets/img/wikiblue.jpeg')"
                             title="deit is very important"
                     >
                     </div>
                     <div class="bg-white rounded px-4 flex flex-col justify-between leading-normal">
                         <div>
                             <div class="mt-3 md:mt-0 text-gray-700 font-bold text-2xl mb-2">
-                                Aliquam venenatis nisl id purus rhoncus, in efficitur sem hendrerit.
+                                <?= $wiki['title'] ?>
                             </div>
                             <p class="text-gray-700 text-base">
-                                Duis euismod est quis lacus elementum, eu laoreet dolor consectetur.
-                                Pellentesque sed neque vel tellus lacinia elementum. Proin consequat ullamcorper eleifend.
+                                <?=  substr($wiki['content'], 0, 300) ?>
                             </p>
                         </div>
                         <div class="flex mt-3">
                             <img src="https://randomuser.me/api/portraits/men/86.jpg"
                                  class="h-10 w-10 rounded-full mr-2 object-cover" />
                             <div>
-                                <p class="font-semibold text-gray-700 text-sm capitalize"> eduard franz </p>
-                                <p class="text-gray-600 text-xs"> 14 Aug </p>
+                                <p class="mt-3 font-semibold text-gray-700 text-sm capitalize"> eduard franz </p>
                             </div>
                         </div>
                     </div>
                 </a>
-
-                <div class="rounded w-full lg:flex mb-10">
-                    <div class="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75"
-                         style="background-image: url('https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80')" title="deit is very important">
-                    </div>
-                    <div class="bg-white rounded px-4 flex flex-col justify-between leading-normal">
-                        <div>
-                            <div class="mt-3 md:mt-0 text-gray-700 font-bold text-2xl mb-2">
-                                Integer commodo, sapien ut vulputate viverra
-                            </div>
-                            <p class="text-gray-700 text-base">
-                                Nam malesuada aliquet metus, ac commodo augue mollis sit amet.
-                                Nam bibendum risus sit amet metus semper consectetur.
-                                Proin consequat ullamcorper eleifend.
-                                Nam bibendum risus sit amet metus semper consectetur.
-                            </p>
-                        </div>
-                        <div class="flex mt-3">
-                            <img src="https://randomuser.me/api/portraits/women/54.jpg"
-                                 class="h-10 w-10 rounded-full mr-2 object-cover" />
-                            <div>
-                                <p class="font-semibold text-gray-700 text-sm capitalize"> Serenity Hughes </p>
-                                <p class="text-gray-600 text-xs"> 14 Aug </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rounded w-full lg:flex mb-10">
-                    <div class="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75"
-                         style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80')" title="deit is very important">
-                    </div>
-                    <div class="bg-white rounded px-4 flex flex-col justify-between leading-normal">
-                        <div>
-                            <div class="mt-3 md:mt-0 text-gray-700 font-bold text-2xl mb-2">
-                                Suspendisse varius justo eu risus laoreet fermentum non aliquam dolor
-                            </div>
-                            <p class="text-gray-700 text-base">
-                                Mauris porttitor, velit at tempus vulputate, odio turpis facilisis dui,
-                                vitae eleifend odio ipsum at odio. Phasellus luctus scelerisque felis eget suscipit.
-                            </p>
-                        </div>
-                        <div class="flex mt-3">
-                            <img src="https://randomuser.me/api/portraits/men/86.jpg"
-                                 class="h-10 w-10 rounded-full mr-2 object-cover" />
-                            <div>
-                                <p class="font-semibold text-gray-700 text-sm capitalize"> eduard franz </p>
-                                <p class="text-gray-600 text-xs"> 14 Aug </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
 
             </div>
 
@@ -242,28 +149,12 @@
     <!-- main ends here -->
 
     <!-- footer -->
-    <footer class="border-t mt-32 pt-12 pb-32 px-4 lg:px-0">
-        <div class="flex">
-
-            <div class="w-full md:w-1/3 lg:w-1/4">
-                <h6 class="font-semibold text-gray-700 mb-4">Company</h6>
-                <ul>
-                    <li> <a href="#" class="block text-gray-600 py-2">Team</a> </li>
-                    <li> <a href="#" class="block text-gray-600 py-2">About us</a> </li>
-                    <li> <a href="#" class="block text-gray-600 py-2">Press</a> </li>
-                </ul>
-            </div>
-
-            <div class="w-full md:w-1/3 lg:w-1/4">
-                <h6 class="font-semibold text-gray-700 mb-4">Content</h6>
-                <ul>
-                    <li> <a href="#" class="block text-gray-600 py-2">Blog</a> </li>
-                    <li> <a href="#" class="block text-gray-600 py-2">Privacy Policy</a> </li>
-                    <li> <a href="#" class="block text-gray-600 py-2">Terms & Conditions</a> </li>
-                    <li> <a href="#" class="block text-gray-600 py-2">Documentation</a> </li>
-                </ul>
-            </div>
-
-        </div>
-    </footer>
+    <p class="text-center text-sm text-gray-500 my-10">
+        &copy;
+        <script>
+            document.write(new Date().getFullYear());
+        </script>
+        <!--                <a>Maryam JAMMAR</a>. -->
+        All rights reserved.
+    </p>
 </div>
